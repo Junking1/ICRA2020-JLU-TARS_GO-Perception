@@ -47,7 +47,7 @@ ICRA2020-JLU-TARS_GO-Perception/
 
   软件架构如下图所示
 
-  ![image-20200824135610905](pics/software_framework.png)
+  ![software_framework](pics/software_framework.png)
 
   
 
@@ -62,7 +62,7 @@ ICRA2020-JLU-TARS_GO-Perception/
 
 * 对相同颜色的灯条，以灯条中心之间的间距大小为条件，对所有同色灯条进行聚类，分别得到场上A/B两辆车的灯条集合
 * 对同一集合中所有的灯条坐标求平均，即为哨岗视角下的整车坐标，同一视角下有我方A/B车坐标以及敌方A/B车坐标
-![image-20200824135610905](pics/robort_detection.png)
+![robort_detection](pics/robort_detection.png)
 * 使用灯条聚类求平均作为整车坐标的原因：
   * 在原始图像尺寸1024x1024的情况下，机器人在视野中所占比例较小，装甲板或整车识别的限制条件过多，精度低、速率慢，不适合哨岗使用
   * 采用灯条识别、距离聚类实现简单，代码执行效率高，且对于机器人部分遮挡情况下依然能够保持识别准确率，符合哨岗工作要求
@@ -80,7 +80,7 @@ ICRA2020-JLU-TARS_GO-Perception/
 
 * 首先计算k-1时刻对k时刻敌人坐标以及协方差的估计值，再计算k时刻的卡尔曼增益
 * 最后计算k时刻的最优坐标值以及对应的协方差，经过递归实时估算出下一时刻的位置
- ![image-20200812154340758](pics/KalmanFilter_test.png)
+ ![KalmanFilter_test](pics/KalmanFilter_test.png)
 (红色标记为当前机器人的全局坐标，蓝色标记为卡尔曼滤波后对机器人下一位置的预测)
 ### 哨岗与机器人之间的通讯传输
 
@@ -95,7 +95,7 @@ ICRA2020-JLU-TARS_GO-Perception/
 * 在ICRA2020-JLU-TARS_GO-Perception目录下，运行`test.cpp`
 
 * 在弹出的窗口中按照顺序单击选择4个边缘点，点击第五次显示透视变换矩阵，此时按ESC显示透视变换结果图。
-  ![image-20200812154340758](pics/set_location_points.jpg)
+  ![set_location_point](pics/set_location_points.jpg)
   
 
 
