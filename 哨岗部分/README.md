@@ -57,7 +57,7 @@ ICRA2020-JLU-TARS_GO-Perception/
 
   
 
-  软件架构如下图所示
+  系统框图和数据流图如下图所示
 
   ![software_framework](pics/software_framework.png)
 
