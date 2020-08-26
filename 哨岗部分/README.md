@@ -106,7 +106,7 @@ ICRA2020-JLU-TARS_GO-Perception/
 ![KalmanFilter](pics/KalmanFilter.png)
 * 最后计算k时刻的最优坐标值以及对应的协方差，经过递归实时估算出下一时刻的位置
  ![KalmanFilter_test](pics/KalmanFilter_test.png)
-(红色标记为当前机器人的全局坐标，蓝色标记为卡尔曼滤波后对机器人下一位置的预测)
+(蓝色标记为当前机器人的全局坐标，红色标记为卡尔曼滤波后对机器人下一位置的预测)
 * 使用卡尔曼滤波又大大增加了对敌人位置预判的准确性与稳定性
 ### 哨岗与机器人之间的通讯传输
 
