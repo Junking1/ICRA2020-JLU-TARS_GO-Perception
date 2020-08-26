@@ -3,7 +3,7 @@
 ```
 ICRA2020-JLU-TARS_GO-Perception/
 ├── README.md                            #说明文档
-├── test_video.mp4                       #测试流程视频
+├── demo_video.mp4                       #测试流程视频
 ├── function.h                           #哨岗功能头文件（实战）
 ├── main.cpp                             #主函数（实战）
 ├── test.cpp                             #测试函数
@@ -92,7 +92,7 @@ ICRA2020-JLU-TARS_GO-Perception/
 
 ### 测试步骤
 * 建立工程配置opencv，并添加test.cpp作为源文件，生成并调试
-
+* 操作演示请看![demo_video](demo_video.mp4)
 * 在弹出的窗口中按照顺序单击选择4个边缘点，点击第五次显示透视变换矩阵，此时按ESC显示透视变换结果图。
   ![set_location_point](pics/set_location_points.jpg)
   
