@@ -1,0 +1,34 @@
+item {
+  id: 1
+  name: 'blue'
+}
+
+item {
+  id: 2
+  name: 'red'
+}
+
+item {
+  id: 3
+  name: 'front'
+}
+
+item {
+  id: 4
+  name: 'back'
+}
+
+item {
+  id: 5
+  name: 'left'
+}
+
+item {
+  id: 6
+  name: 'right'
+}
+
+item {
+  id: 7
+  name: 'tracking'
+}
