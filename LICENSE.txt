@@ -4,7 +4,7 @@ copy or use the software.
 
 
                           License Agreement
-               For Jilin University TARS_GO
+                    For Jilin University TARS_GO
                        (3-clause BSD License)
 
 Copyright (C) 2009-2020, NVIDIA Corporation, all rights reserved.
