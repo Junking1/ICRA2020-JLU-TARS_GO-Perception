@@ -145,6 +145,3 @@ $$yaw = atan2(a,k) $$
 
 
 
-## 开源协议
-
-MIT License
