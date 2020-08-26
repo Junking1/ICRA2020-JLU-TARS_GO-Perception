@@ -24,7 +24,7 @@ ICRA2020-JLU-TARS_GO-Perception/
 
 程序依赖工具如下：
 
-* Flycapture2(仅实战使用)
+* Flycapture2(仅实战使用)pointgrey相机驱动以及依赖文件
 * opencv==3.4.6
 
 
@@ -69,7 +69,7 @@ ICRA2020-JLU-TARS_GO-Perception/
 
 * 通过张正有标定法，标定哨岗相机，得到哨岗相机内参，矫正相机镜头的畸变
 * 利用哨岗视角下的边缘四点标定，与全局地图的边缘四点，可算得透视变换矩阵Mask
-  ![image-20200824135610905](pics/set_location_points.jpg)
+  ![set_location_points](pics/set_location_points.jpg)
 * 将我方A/B车坐标以及敌方A/B车坐标与Mask相乘，得到全局地图下的敌我机器人坐标
 
 ### 双哨岗误差校正模块
@@ -91,8 +91,7 @@ ICRA2020-JLU-TARS_GO-Perception/
 ## 软件效果展示
 
 ### 测试步骤
-
-* 在ICRA2020-JLU-TARS_GO-Perception目录下，运行`test.cpp`
+* 建立工程配置opencv，并添加test.cpp作为源文件，生成并调试
 
 * 在弹出的窗口中按照顺序单击选择4个边缘点，点击第五次显示透视变换矩阵，此时按ESC显示透视变换结果图。
   ![set_location_point](pics/set_location_points.jpg)
