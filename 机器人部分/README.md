@@ -12,7 +12,7 @@ Robomaster-Detector/
 ├── KCF                                         #核相关滤波算法模块
 │   ├──build                                    #构建生成的pyhon模块
 │   ├──python                                   #python接口文件
-│   ├──src                                      #核相关滤波核心代码（C++）
+│   ├──src                                      #核相关滤波算法核心代码（C++）
 │   ├──run.py                                   #python接口测试代码
 │   ├──setup.py                                 #python模块构建代码
 ├── data                                        #神经网络模型权重及配置文件
@@ -43,28 +43,29 @@ Robomaster-Detector/
 * threading
 * Queue
 * cv_bridge
+* 其他依赖模块详见./Robomaster_Detector/requirements.txt
 
 
 
-## 内容简述
+## 整体介绍
 
-本项目代码为机器人的视觉感知功能，主要是识别敌方机器人方位、敌方装甲板，精确测算敌方位置，并计算敌方相对于我方的位姿信息。
+本项目代码基于python语言和C++语言编写，采用UTF-8编码，符合python代码的风格规范。代码内容为机器人的视觉感知功能，主要是识别敌方机器人方位、敌方装甲板，精确测算敌方位置，并计算敌方相对于我方的位姿信息。
 
-- **深度学习检测器（Googlenet-SSD）**
+- **深度学习检测器（改进的SSD算法）**
 
 - **目标跟踪器（核相关滤波算法）**
 
 - **姿态解算与坐标变换模块（PNP算法）**
 
-装甲车的视觉检测算法采用**基于深度学习的目标检测器+核相关滤波算法的目标跟踪器**的模式。
+装甲车的视觉检测算法采用**基于深度学习的目标检测器+基于核相关滤波算法的目标跟踪器**的模式。
 
 深度学习部分采用改进的SSD目标检测算法，以Googlenet为模型的主干，并消去了用于检测极小目标的分支、并利用模型剪枝技术以提升检测速度。同时，以并行的方式、采用核相关滤波算法对装甲板这一目标进行跟踪，辅助深度学习算法，弥补检测速度上的不足。
 
 采用这样的模式，既可以实现深度学习算法强大的目标检测能力和抗干扰能力，又可以实现较高的实时性。经测试，该算法的平均检测速度可达到80FPS(12.5ms/frame)，满足机器人精确打击的需求。
 
-- 软件流程如下图所示：
-
-  ![image-20200824135610905](pic/software_structure.svg)
+- 软件架构与数据流如下图所示：
+  ![software](pic/software.png)
+  ![software_structure](pic/software_structure.svg)
 
 
 
@@ -78,13 +79,21 @@ Robomaster-Detector/
 
 * 模型训练的loss及mAP：
   
-  ![image-20200218230134551](pic/train_loss.png)
+  ![train_loss](pic/train_loss.png)
 
-  ![image-20200218230134551](pic/mAP.png)
+  ![mAP](pic/mAP.png)
 
 * 网络结构图(删除了小目标预测分支)：
 
-  ![image-20200824135610905](pic/model_structure.png)
+  ![model_structure](pic/model_structure.png)
+
+* 效果图（左边为检测结果，右边为标注结果）
+  
+  ![left_detection_right_groudtruth1](pic/left_detection_right_groudtruth1.png)
+  ![left_detection_right_groudtruth2](pic/left_detection_right_groudtruth2.png)
+  ![left_detection_right_groudtruth3](pic/left_detection_right_groudtruth3.png)
+  ![left_detection_right_groudtruth4](pic/left_detection_right_groudtruth4.png)
+  ![left_detection_right_groudtruth5](pic/left_detection_right_groudtruth5.png)
 
 #### 目标跟踪器
 
@@ -96,19 +105,19 @@ Robomaster-Detector/
 #### 姿态解算与坐标变换
 
 * 通过相机的标定方法获得相机的内参矩阵
-* 以装甲板的中心建立世界坐标系，采用PNP算法求解出相机的外参矩阵
-$$R=
+* 以装甲板的中心建立世界坐标系，采用PNP算法求解出相机的平移矩阵
+$$T=
 \left[
  \begin{matrix}
-   a & b & c \\
-   f & g & h \\
-   k & l & m \\
+    r\\
+    s\\
+    t\\
   \end{matrix} 
 \right]
 $$
-并根据 
-$$pitch = atan2(f,k)$$
-$$yaw = atan2(a,k) $$
+r、s、t表示装甲板中心与我方相机的相对位置。并根据 
+$$pitch = atan2(s,t+offset)$$
+$$yaw = atan2(r,t+offset)$$
 求解出旋转角，进而控制云台转动.
 
 
@@ -121,7 +130,7 @@ $$yaw = atan2(a,k) $$
 **test.avi放在./robomaster_detector下，robomaster_trt.pb放在./robomaster_detector/model_data下**
 ### 单独测试深度学习目标检测功能
 
-* 运行`pip install requirements.txt`安装相关依赖
+* 运行`pip install -r requirements.txt`安装相关依赖
 * 在./Robomaster_Detector目录下，运行`python detector.py`
 
 ### 单独测试目标跟踪算法功能
@@ -141,7 +150,7 @@ $$yaw = atan2(a,k) $$
 
 ### 测试结果
 
-![test_result](pic/result1.gif)
+![test_result](pic/result.gif)
 
 
 ## 设计模式
