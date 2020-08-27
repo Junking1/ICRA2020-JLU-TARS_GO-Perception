@@ -40,7 +40,8 @@ ICRA2020-JLU-TARS_GO-Perception/
 * opencv==3.4.6
 
 ## 软硬件环境
-软件：opencv3.4.6 ；pointgrey相机驱动；Flycapture SDK；VS2017；CUDA9
+软件：opencv3.4.6 ；pointgrey相机驱动；Flycapture SDK；VS2017；CUDA9  
+
 硬件：灰点相机GS3-U3-41C6C-C+7mm镜头；GTX-1050ti；
 
 ## 编译、安装方式
